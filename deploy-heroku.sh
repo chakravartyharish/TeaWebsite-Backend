@@ -3,7 +3,7 @@
 # Inner Veda Tea Store - Heroku Deployment Script
 # This script automates the deployment of the FastAPI backend to Heroku
 
-APP_NAME="innerveda-tea-api"
+APP_NAME="teawebsite"
 HEROKU_REMOTE="heroku"
 
 echo "🍃 Starting Inner Veda Tea Store Backend Deployment to Heroku..."
