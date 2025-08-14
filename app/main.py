@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 import os
 
-from app.routers import mongo_products, ai, feedback, notifications
+from app.routers import mongo_products, ai, feedback, notifications, qr_codes
 # Temporarily disabled SQLite-dependent routers: leads, payments, auth, addresses, orders, admin_products, webhooks
 from app.core.mongodb import connect_to_mongo, close_mongo_connection
 
@@ -42,6 +42,7 @@ app.include_router(mongo_products.router)  # MongoDB products API
 app.include_router(ai.router)
 app.include_router(feedback.router)  # MongoDB feedback API
 app.include_router(notifications.router)  # Notification service API
+app.include_router(qr_codes.router)  # QR code generation API
 # Temporarily disabled SQLite-dependent routers including webhooks
 
 
