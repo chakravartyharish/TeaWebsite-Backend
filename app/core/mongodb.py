@@ -1,6 +1,9 @@
 from motor.motor_asyncio import AsyncIOMotorClient
 from beanie import init_beanie
-from app.models.mongo_models import Product, Category
+from app.models.mongo_models import Product, Category, Feedback
+from app.models.notification_models import (
+    NotificationTemplate, NotificationLog, UserNotificationPreferences, NotificationQueue
+)
 import os
 import asyncio
 import logging
@@ -41,10 +44,14 @@ async def connect_to_mongo():
         
         mongodb.database = mongodb.client[mongodb_db]
         
-        # Initialize beanie with the Product model
+        # Initialize beanie with all models
         await init_beanie(
             database=mongodb.database,
-            document_models=[Product, Category]
+            document_models=[
+                Product, Category, Feedback,
+                NotificationTemplate, NotificationLog, 
+                UserNotificationPreferences, NotificationQueue
+            ]
         )
         
         # Test that products collection is accessible

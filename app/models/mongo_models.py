@@ -51,3 +51,24 @@ class Category(Document):
     class Settings:
         name = "categories"
         indexes = ["slug"]
+
+class Feedback(Document):
+    name: str
+    email: str
+    subject: str
+    message: str
+    rating: Optional[int] = Field(None, ge=1, le=5)
+    product_id: Optional[str] = None
+    order_id: Optional[str] = None
+    status: str = Field(default="pending")
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+    updated_at: datetime = Field(default_factory=datetime.utcnow)
+
+    class Settings:
+        name = "feedback"
+        indexes = [
+            "email",
+            "status",
+            "created_at",
+            "product_id"
+        ]
